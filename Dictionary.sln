@@ -28,6 +28,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.Persistence", "src\Api\Infrastructure\Dictionary.Persistence\Dictionary.Persistence.csproj", "{45D42CBE-D4FA-4929-8433-63BB485ED8BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.WebApi", "src\Api\WebApi\Dictionary.WebApi\Dictionary.WebApi.csproj", "{5C3216E2-7FB6-40EE-BF8E-F089B886AFFB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{45D42CBE-D4FA-4929-8433-63BB485ED8BC} = {45D42CBE-D4FA-4929-8433-63BB485ED8BC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.WebApp", "src\Clients\BlazorWeb\Dictionary.WebApp\Dictionary.WebApp.csproj", "{044AA03D-CCAC-46CA-B9BD-BC289B269969}"
 EndProject
