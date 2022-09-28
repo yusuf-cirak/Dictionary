@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using Dictionary.Domain.Entities;
 using Dictionary.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Dictionary.Persistence.Context
 {
     public sealed class DictionaryContext:DbContext
     {
-        public DictionaryContext(DbContextOptions optins):base(optins)
+        private IConfiguration Configuration { get; }
+        public DictionaryContext(DbContextOptions optinos,IConfiguration configuration):base(optinos)
         {
-            
+            Configuration = configuration;
         }
 
         public DbSet<User> Users { get; set; }
@@ -33,6 +35,7 @@ namespace Dictionary.Persistence.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

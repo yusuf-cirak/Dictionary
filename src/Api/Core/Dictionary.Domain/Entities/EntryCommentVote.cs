@@ -1,6 +1,8 @@
-﻿namespace Dictionary.Domain.Entities;
+﻿using Dictionary.Domain.Entities.Common;
 
-public class EntryCommentVote
+namespace Dictionary.Domain.Entities;
+
+public class EntryCommentVote:BaseEntity
 {
     public Guid UserId { get; set; }
     public Guid EntryCommentId { get; set; }

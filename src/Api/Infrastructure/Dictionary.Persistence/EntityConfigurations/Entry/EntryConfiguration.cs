@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Dictionary.Persistence.EntityConfigurations
 {
-    public class EntryConfiguration:BaseEntityConfiguration<Entry>
+    public sealed class EntryConfiguration : BaseEntityConfiguration<Entry>
     {
         public override void Configure(EntityTypeBuilder<Entry> builder)
         {
@@ -17,8 +17,9 @@ namespace Dictionary.Persistence.EntityConfigurations
 
             builder.ToTable("Entries");
 
+
             builder.HasOne(e => e.User)
-                .WithOne().HasForeignKey<Entry>(e => e.UserId);
+                .WithMany(e => e.Entries).HasForeignKey(e => e.UserId);
 
 
             builder.HasMany(e => e.EntryVotes)
