@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dictionary.Common.ViewModels
+namespace Dictionary.Common.Enums
 {
     public enum VoteType
     {
-        None=-1,
-        DownVote=0,
-        UpVote=1
+        None = -1,
+        DownVote = 0,
+        UpVote = 1
     }
 }

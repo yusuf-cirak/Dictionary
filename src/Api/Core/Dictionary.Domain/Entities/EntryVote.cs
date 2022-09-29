@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dictionary.Common.ViewModels;
+using Dictionary.Common.Enums;
 using Dictionary.Domain.Entities.Common;
 
 namespace Dictionary.Domain.Entities

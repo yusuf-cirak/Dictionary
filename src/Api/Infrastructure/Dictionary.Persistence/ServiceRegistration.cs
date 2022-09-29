@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dictionary.Application.Abstractions.Repositories;
 using Dictionary.Persistence.Context;
+using Dictionary.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,9 @@ namespace Dictionary.Persistence
 
             
             SeedData.SeedAsync(configuration).GetAwaiter().GetResult(); // Comment this before migration
+
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
 
             return services;

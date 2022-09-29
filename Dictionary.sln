@@ -32,15 +32,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.WebApi", "src\Ap
 		{45D42CBE-D4FA-4929-8433-63BB485ED8BC} = {45D42CBE-D4FA-4929-8433-63BB485ED8BC}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.WebApp", "src\Clients\BlazorWeb\Dictionary.WebApp\Dictionary.WebApp.csproj", "{044AA03D-CCAC-46CA-B9BD-BC289B269969}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.WebApp", "src\Clients\BlazorWeb\Dictionary.WebApp\Dictionary.WebApp.csproj", "{044AA03D-CCAC-46CA-B9BD-BC289B269969}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.Common", "src\Common\Dictionary.Common\Dictionary.Common.csproj", "{2AD19921-E604-4713-AEEF-83F8259C955C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.Common", "src\Common\Dictionary.Common\Dictionary.Common.csproj", "{2AD19921-E604-4713-AEEF-83F8259C955C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.FavoriteService", "src\Projections\Dictionary.FavoriteService\Dictionary.FavoriteService.csproj", "{DF355F2C-CC01-4F32-8799-FB36E7DFF7C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.FavoriteService", "src\Projections\Dictionary.FavoriteService\Dictionary.FavoriteService.csproj", "{DF355F2C-CC01-4F32-8799-FB36E7DFF7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.UserService", "src\Projections\Dictionary.UserService\Dictionary.UserService.csproj", "{06ED4764-EEAF-4ACF-B96B-68F80ACB24BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.UserService", "src\Projections\Dictionary.UserService\Dictionary.UserService.csproj", "{06ED4764-EEAF-4ACF-B96B-68F80ACB24BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.VoteService", "src\Projections\Dictionary.VoteService\Dictionary.VoteService.csproj", "{975716A4-FE11-42C4-9534-B6A8320115E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.VoteService", "src\Projections\Dictionary.VoteService\Dictionary.VoteService.csproj", "{975716A4-FE11-42C4-9534-B6A8320115E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
