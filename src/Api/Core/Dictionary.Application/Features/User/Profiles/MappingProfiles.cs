@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Dictionary.Common.DTOs.User;
+using Dictionary.Common.DTOs;
 using Dictionary.Domain.Entities;
 
 namespace Dictionary.Application.Features.Profiles
@@ -14,6 +14,8 @@ namespace Dictionary.Application.Features.Profiles
         public MappingProfiles()
         {
             CreateMap<User, LoginUserCommandResponse>();
+
+            CreateMap<CreateUserCommandRequest, User>();
         }
     }
 }

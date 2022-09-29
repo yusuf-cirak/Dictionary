@@ -1,4 +1,4 @@
-﻿using Dictionary.Common.DTOs.User;
+﻿using Dictionary.Common.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

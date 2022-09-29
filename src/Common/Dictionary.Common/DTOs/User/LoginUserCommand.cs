@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace Dictionary.Common.DTOs.User
+namespace Dictionary.Common.DTOs
 {
     public sealed class LoginUserCommandRequest:IRequest<LoginUserCommandResponse>
     {
@@ -24,6 +24,6 @@ namespace Dictionary.Common.DTOs.User
     {
         public Guid Id { get; set; }
         public string UserName { get; set; }
-        public object AccessToken { get; set; } // We dont want reference from Infrastructure
+        public string AccessToken { get; set; } 
     }
 }

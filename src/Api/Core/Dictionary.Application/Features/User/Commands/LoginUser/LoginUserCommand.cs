@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dictionary.Application.Abstractions.Repositories;
 using Dictionary.Application.Features.Rules;
-using Dictionary.Common.DTOs.User;
+using Dictionary.Common.DTOs;
 using Dictionary.Common.Infrastructure;
 using Dictionary.Domain.Entities;
 using MediatR;

@@ -33,5 +33,23 @@ namespace Dictionary.Application.Features.Rules
         {
             if (passwordFromDb != encryptedPassword) throw new BusinessException("Email or password not correct!");
         }
+
+        public async Task UserEmailCannotBeDuplicatedBeforeRegistered(string email)
+        {
+           if (await _repository.FirstOrDefaultAsync(e=>e.Email==email)!=null)
+           {
+            throw new BusinessException("A user already exists with that email");
+           }
+        }
+
+        public async Task<User> UserMustExistBeforeUpdated(Guid id)
+        {
+            User user = await _repository.GetByIdAsync(id);
+            if (user==null)
+                throw new BusinessException("User does not exist");
+
+            return user;
+            
+        }
     }
 }
