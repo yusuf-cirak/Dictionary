@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dictionary.Application.Abstractions.Repositories;
-using Dictionary.Application.Features.Rules;
+using Dictionary.Application.Features.Users.Rules;
 using Dictionary.Common;
 using Dictionary.Common.DTOs;
 using Dictionary.Common.Events;
@@ -13,7 +13,7 @@ using Dictionary.Common.Infrastructure;
 using Dictionary.Domain.Entities;
 using MediatR;
 
-namespace Dictionary.Application.Features.Commands.CreateUser
+namespace Dictionary.Application.Features.Users.Commands.Create
 {
     public sealed class CreateUserCommandHandler:IRequestHandler<CreateUserCommandRequest,Guid>
     {

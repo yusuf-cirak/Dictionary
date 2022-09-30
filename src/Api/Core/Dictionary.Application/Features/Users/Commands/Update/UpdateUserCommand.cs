@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dictionary.Application.Abstractions.Repositories;
-using Dictionary.Application.Features.Rules;
+using Dictionary.Application.Features.Users.Rules;
 using Dictionary.Common;
 using Dictionary.Common.DTOs;
 using Dictionary.Common.Events;
@@ -12,7 +12,7 @@ using Dictionary.Common.Infrastructure;
 using Dictionary.Domain.Entities;
 using MediatR;
 
-namespace Dictionary.Application.Features.Commands.UpdateUser
+namespace Dictionary.Application.Features.Users.Commands.Update
 {
     public sealed class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommandRequest,Guid>
     {

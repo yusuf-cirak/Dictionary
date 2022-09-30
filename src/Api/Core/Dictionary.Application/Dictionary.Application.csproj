@@ -10,6 +10,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
@@ -19,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\User\Queries\" />
+    <Folder Include="Features\Entries\Queries\" />
+    <Folder Include="Features\Users\Queries\" />
   </ItemGroup>
 
 </Project>

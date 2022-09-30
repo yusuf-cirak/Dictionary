@@ -24,9 +24,9 @@ namespace Dictionary.Common.Infrastructure
 
         }
 
-        public static EventingBasicConsumer CreateBasicConsumer()
+        private static EventingBasicConsumer CreateBasicConsumer()
         {
-            var factory = new ConnectionFactory { HostName = DictionaryConstants.RabbitMqHost };
+            var factory = new ConnectionFactory { HostName = DictionaryConstants.RabbitMqHost};
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
 
@@ -34,7 +34,7 @@ namespace Dictionary.Common.Infrastructure
             return new EventingBasicConsumer(channel);
         }
 
-        public static EventingBasicConsumer EnsureExchange(this EventingBasicConsumer consumer, string exchangeName, string exchangeType = DictionaryConstants.DefaultExchangeType)
+        private static EventingBasicConsumer EnsureExchange(this EventingBasicConsumer consumer, string exchangeName, string exchangeType = DictionaryConstants.DefaultExchangeType)
         {
             consumer.Model.ExchangeDeclare(exchange: exchangeName,
                 type: exchangeType,
@@ -44,7 +44,7 @@ namespace Dictionary.Common.Infrastructure
             return consumer;
         }
 
-        public static EventingBasicConsumer EnsureQueue(this EventingBasicConsumer consumer, string queueName, string exchangeName)
+        private static EventingBasicConsumer EnsureQueue(this EventingBasicConsumer consumer, string queueName, string exchangeName)
         {
             consumer.Model.QueueDeclare(queue: queueName,
                 durable: false,

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using Dictionary.Common.DTOs;
 using FluentValidation;
 
-namespace Dictionary.Application.Features.Commands.CreateUser
+namespace Dictionary.Application.Features.Users.Commands.Login
 {
-    public class CreateUserCommandValidator:AbstractValidator<CreateUserCommandRequest>
+    public sealed class LoginUserCommandValidator:AbstractValidator<LoginUserCommandRequest>
     {
-        public CreateUserCommandValidator()
+        public LoginUserCommandValidator()
         {
-            RuleFor(e => e.UserName).NotNull();
             RuleFor(e => e.Email).NotNull().EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible).WithMessage("{PropertyName} not a valid e-mail address!");
 
             RuleFor(e => e.Password).NotNull().MinimumLength(6).WithMessage("{PropertyName} should at least be {MinLength} character");

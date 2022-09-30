@@ -7,7 +7,7 @@ using AutoMapper;
 using Dictionary.Common.DTOs;
 using Dictionary.Domain.Entities;
 
-namespace Dictionary.Application.Features.Profiles
+namespace Dictionary.Application.Features.Users.Profiles
 {
     public sealed class MappingProfiles:Profile
     {
@@ -16,6 +16,9 @@ namespace Dictionary.Application.Features.Profiles
             CreateMap<User, LoginUserCommandResponse>();
 
             CreateMap<CreateUserCommandRequest, User>();
+
+            CreateMap<UpdateUserCommandRequest, User>();
+
         }
     }
 }
