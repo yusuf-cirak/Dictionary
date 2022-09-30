@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dictionary.Common.DTOs;
+using Dictionary.Common.Features.Users.Commands.CreateUser;
 using FluentValidation;
 
 namespace Dictionary.Application.Features.Users.Commands.Create

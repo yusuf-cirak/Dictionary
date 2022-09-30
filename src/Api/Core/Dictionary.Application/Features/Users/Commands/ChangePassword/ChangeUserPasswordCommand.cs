@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dictionary.Application.Abstractions.Repositories;
 using Dictionary.Application.Features.Users.Rules;
-using Dictionary.Common.DTOs.User;
+using Dictionary.Common.Features.Users.Commands.ChangePassword;
 using Dictionary.Domain.Entities;
 using MediatR;
 

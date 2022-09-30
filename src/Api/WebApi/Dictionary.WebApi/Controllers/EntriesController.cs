@@ -1,4 +1,6 @@
-﻿using Dictionary.Common.DTOs.Entry;
+﻿using Dictionary.Common.Features.Entries.Commands.CreateEntry;
+using Dictionary.Common.Features.EntryComments.Commands.Create;
+using Dictionary.Common.Features.EntryFavorites.Commands.Create;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

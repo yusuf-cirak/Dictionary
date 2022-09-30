@@ -1,6 +1,7 @@
 ﻿using Dictionary.Application.Features.Users.Commands.ConfirmEmail;
-using Dictionary.Common.DTOs;
-using Dictionary.Common.DTOs.User;
+using Dictionary.Common.Features.Users.Commands.ChangePassword;
+using Dictionary.Common.Features.Users.Commands.LoginUser;
+using Dictionary.Common.Features.Users.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost("password")]
+        [HttpPatch("password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommandRequest request)
         {
             bool response = await Mediator.Send(request);
@@ -31,7 +32,7 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost("update")]
+        [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommandRequest request)
         {
             Guid response = await Mediator.Send(request);
