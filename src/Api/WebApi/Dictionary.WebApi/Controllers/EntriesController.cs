@@ -1,4 +1,6 @@
-﻿using Dictionary.Common.Features.Entries.Commands.CreateEntry;
+﻿using Dictionary.Application.Features.Entries.Queries.GetEntries;
+using Dictionary.Application.Features.Entries.Queries.GetMainPageEntries;
+using Dictionary.Common.Features.Entries.Commands.CreateEntry;
 using Dictionary.Common.Features.EntryComments.Commands.Create;
 using Dictionary.Common.Features.EntryFavorites.Commands.Create;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +12,21 @@ namespace Dictionary.WebApi.Controllers
     [ApiController]
     public class EntriesController : BaseController
     {
+        [HttpGet]
+        public async Task<IActionResult> GetEntries([FromQuery] GetEntriesQueryRequest request)
+        {
+            GetEntriesQueryResponse response = await Mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpGet("main")]
+        public async Task<IActionResult> GetMainPageEntries([FromQuery] GetMainPageEntriesQueryRequest request)
+        {
+            GetMainPageEntriesQueryResponse response = await Mediator.Send(request);
+            return Ok(response);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> CreateEntry([FromBody] CreateEntryCommandRequest request)
         {
@@ -30,5 +47,10 @@ namespace Dictionary.WebApi.Controllers
             bool response = await Mediator.Send(request);
             return Ok(response);
         }
+
+
+        
+
+
     }
 }
