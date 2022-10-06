@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Entries\Queries\" />
     <Folder Include="Features\EntryCommentFavorites\Queries\" />
-    <Folder Include="Features\EntryComments\Queries\" />
     <Folder Include="Features\EntryCommentVotes\Queries\" />
     <Folder Include="Features\EntryFavorites\Queries\" />
     <Folder Include="Features\EntryVotes\Queries\" />

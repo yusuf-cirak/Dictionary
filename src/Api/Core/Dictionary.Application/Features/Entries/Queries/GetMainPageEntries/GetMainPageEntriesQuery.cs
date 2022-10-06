@@ -17,9 +17,10 @@ namespace Dictionary.Application.Features.Entries.Queries.GetMainPageEntries
 {
     public sealed class GetMainPageEntriesQueryRequest : BasePagingQuery, IRequest<GetMainPageEntriesQueryResponse>
     {
+        public GetMainPageEntriesQueryRequest(int page, int pageSize) : base(page, pageSize)
+        {
+        }
         public Guid? UserId { get; }
-
-
     }
 
     public sealed class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntriesQueryRequest, GetMainPageEntriesQueryResponse>

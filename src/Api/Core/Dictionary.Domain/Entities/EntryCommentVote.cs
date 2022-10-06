@@ -1,4 +1,5 @@
-﻿using Dictionary.Domain.Entities.Common;
+﻿using Dictionary.Common.Enums;
+using Dictionary.Domain.Entities.Common;
 
 namespace Dictionary.Domain.Entities;
 
@@ -8,4 +9,5 @@ public class EntryCommentVote:BaseEntity
     public Guid EntryCommentId { get; set; }
     public virtual EntryComment EntryComment { get; set; }
     public virtual User User { get; set; }
+    public VoteType VoteType { get; set; }
 }

@@ -10,6 +10,6 @@ namespace Dictionary.WebApi.Controllers
 
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>()!;
 
-        protected Guid UserId => new(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        protected Guid? UserId => new(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
     }
 }

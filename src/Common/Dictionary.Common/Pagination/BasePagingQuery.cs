@@ -10,5 +10,11 @@ namespace Dictionary.Common.Pagination
     {
         public int Page { get; set; }
         public int PageSize { get; set; }
+
+        public BasePagingQuery(int page, int pageSize)
+        {
+            Page = page;
+            PageSize = pageSize;
+        }
     }
 }

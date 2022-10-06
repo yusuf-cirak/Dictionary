@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dictionary.Application.Features.Users.Queries;
 using Dictionary.Common.Features.Users.Commands.CreateUser;
 using Dictionary.Common.Features.Users.Commands.LoginUser;
 using Dictionary.Common.Features.Users.Commands.Update;
@@ -21,6 +22,7 @@ namespace Dictionary.Application.Features.Users.Profiles
 
             CreateMap<UpdateUserCommandRequest, User>();
 
+            CreateMap<User, GetUserDetailQueryResponse>();
         }
     }
 }
