@@ -22,10 +22,11 @@ namespace Dictionary.Persistence
                 {
                     sqlOpt.EnableRetryOnFailure();
                 });
+
             });
 
 
-            
+
             SeedData.SeedAsync(configuration).GetAwaiter().GetResult(); // Comment this before migration
 
 

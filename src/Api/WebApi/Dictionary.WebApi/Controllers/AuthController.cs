@@ -18,7 +18,7 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPatch("password")]
+        [HttpPut("password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommandRequest request)
         {
             bool response = await Mediator.Send(request);

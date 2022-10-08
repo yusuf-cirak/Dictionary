@@ -13,11 +13,15 @@ namespace Dictionary.Persistence.Context
 {
     public sealed class DictionaryContext:DbContext
     {
-        private IConfiguration Configuration { get; }
-        public DictionaryContext(DbContextOptions optinos,IConfiguration configuration):base(optinos)
+        protected IConfiguration Configuration { get; }
+
+        public DictionaryContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(
+        dbContextOptions)
         {
             Configuration = configuration;
         }
+
+
 
         public DbSet<User> Users { get; set; }
 
@@ -31,6 +35,9 @@ namespace Dictionary.Persistence.Context
 
         public DbSet<EntryCommentFavorite> EntryCommentFavorites { get; set; }
         public DbSet<EntryCommentVote> EntryCommentVotes { get; set; }
+
+
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

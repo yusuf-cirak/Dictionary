@@ -13,7 +13,7 @@ namespace Dictionary.WebApi.Controllers
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetEntryComments([FromRoute] Guid id,int page, int pageSize)
         {
-            var request = new GetEntryCommentsQueryRequest {EntryId=id,UserId=UserId };
+            var request = new GetEntryCommentsQueryRequest {EntryId=id,UserId=UserId,BasePagingQuery=new(page,pageSize) };
             var response = await Mediator.Send(request);
             return Ok(response);
         }

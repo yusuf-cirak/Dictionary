@@ -1,4 +1,6 @@
-﻿using Dictionary.Common.Features.EntryCommentVotes.Commands.Create;
+﻿using AutoMapper.Configuration.Annotations;
+using Dictionary.Common.Enums;
+using Dictionary.Common.Features.EntryCommentVotes.Commands.Create;
 using Dictionary.Common.Features.EntryCommentVotes.Commands.Delete;
 using Dictionary.Common.Features.EntryVotes.Commands.Create;
 using Dictionary.Common.Features.EntryVotes.Commands.Delete;
@@ -11,9 +13,11 @@ namespace Dictionary.WebApi.Controllers
     [ApiController]
     public sealed class VotesController : BaseController
     {
-        [HttpPost]
-        public async Task<IActionResult> CreateEntryVote([FromBody] CreateEntryVoteCommandRequest request)
+        [HttpPost("entry")]
+        public async Task<IActionResult> CreateEntryVote([FromRoute] Guid entryId, Guid userId, VoteType voteType)
         {
+            var request = new CreateEntryVoteCommandRequest { EntryId = entryId, VoteType = voteType, UserId = userId };
+
             if (request.UserId == Guid.Empty) request.UserId = UserId!.Value;
 
             var response = await Mediator.Send(request);
@@ -21,9 +25,11 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateEntryCommentVote([FromBody] CreateEntryCommentVoteCommandRequest request)
+        [HttpPost("entry-comment/{EntryCommentId}")]
+        public async Task<IActionResult> CreateEntryCommentVote([FromRoute] Guid entryCommentId, VoteType voteType, Guid userId)
         {
+            var request = new CreateEntryCommentVoteCommandRequest { VoteType = voteType, EntryCommentId = entryCommentId, UserId = userId };
+
             if (request.UserId == Guid.Empty) request.UserId = UserId!.Value;
 
             var response = await Mediator.Send(request);
@@ -31,17 +37,21 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("entry-vote")]
-        public async Task<IActionResult> CreateEntryVote([FromBody] DeleteEntryVoteCommandRequest request)
+        [HttpDelete("entry-vote/{EntryId}")]
+        public async Task<IActionResult> DeleteEntryVote([FromRoute] Guid entryId, Guid userId)
         {
+            var request = new DeleteEntryVoteCommandRequest(userId, entryId);
+
             var response = await Mediator.Send(request);
 
             return Ok(response);
         }
 
-        [HttpDelete("entry-comment-vote")]
-        public async Task<IActionResult> CreateEntryCommentVote([FromBody] DeleteEntryCommentVoteCommandRequest request)
+        [HttpPost("entry-comment-vote/{EntryCommentId}")]
+        public async Task<IActionResult> DeleteEntryCommentVote([FromRoute] Guid entryCommentId, Guid userId)
         {
+            var request = new DeleteEntryCommentVoteCommandRequest { EntryCommentId = entryCommentId, UserId = userId };
+
             var response = await Mediator.Send(request);
 
             return Ok(response);

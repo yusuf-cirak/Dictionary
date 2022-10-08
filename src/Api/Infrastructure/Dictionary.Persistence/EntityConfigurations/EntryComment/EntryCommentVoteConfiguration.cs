@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Dictionary.Persistence.EntityConfigurations
 {
-    public sealed class EntryCommentVoteConfiguration:BaseEntityConfiguration<EntryCommentVote>
+    public sealed class EntryCommentVoteConfiguration : BaseEntityConfiguration<EntryCommentVote>
     {
         public override void Configure(EntityTypeBuilder<EntryCommentVote> builder)
         {

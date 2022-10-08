@@ -23,7 +23,7 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpGet("user")]
         public async Task<IActionResult> GetUserEntries(string userName, Guid? userId, int page, int pageSize)
         {
             if (!userId.HasValue && string.IsNullOrEmpty(userName))
@@ -43,10 +43,10 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEntryById([FromRoute] Guid id, int page, int pageSize)
+        [HttpGet("detail/{id}")]
+        public async Task<IActionResult> GetEntryDetailById([FromRoute] Guid id, int page, int pageSize)
         {
-            var request = new GetEntryDetailQueryRequest { EntryId = id, UserId = UserId};
+            var request = new GetEntryDetailQueryRequest { EntryId = id, UserId = UserId,PagingQuery=new(page,pageSize)};
             var response = await Mediator.Send(request);
             return Ok(response);
         }
