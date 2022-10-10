@@ -14,6 +14,6 @@ namespace Dictionary.WebApp.Infrastructure.Services.Abstractions
         Task<List<GetEntryDetailViewModel>> GetEntryDetail(Guid entryId);
         Task<PagedViewModel<GetEntryDetailViewModel>> GetMainPageEntries(int page, int pageSize);
         Task<List<GetEntryDetailViewModel>> GetProfilePageEntries(int page, int pageSize, string userName = null);
-        Task<SearchEntryViewModel> SearchEntryBySubject(string searchText);
+        Task<List<SearchEntryViewModel>> SearchEntryBySubject(string searchText);
     }
 }

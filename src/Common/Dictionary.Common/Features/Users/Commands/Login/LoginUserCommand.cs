@@ -10,13 +10,17 @@ namespace Dictionary.Common.Features.Users.Commands.LoginUser
     public sealed class LoginUserCommandRequest : IRequest<LoginUserCommandResponse>
     {
 
-        public string Email { get; }
-        public string Password { get; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
         public LoginUserCommandRequest(string email, string password)
         {
             Email = email;
             Password = password;
+        }
+        public LoginUserCommandRequest()
+        {
+
         }
     }
 

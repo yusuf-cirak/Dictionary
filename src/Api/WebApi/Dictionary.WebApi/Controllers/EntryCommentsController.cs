@@ -10,10 +10,10 @@ namespace Dictionary.WebApi.Controllers
     public class EntryCommentsController : BaseController
     {
 
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> GetEntryComments([FromRoute] Guid id,int page, int pageSize)
+        [HttpGet("{entryId}")]
+        public async Task<IActionResult> GetEntryComments([FromRoute] Guid entryId,int page, int pageSize)
         {
-            var request = new GetEntryCommentsQueryRequest {EntryId=id,UserId=UserId,BasePagingQuery=new(page,pageSize) };
+            var request = new GetEntryCommentsQueryRequest {EntryId=entryId,UserId=UserId,BasePagingQuery=new(page,pageSize) };
             var response = await Mediator.Send(request);
             return Ok(response);
         }

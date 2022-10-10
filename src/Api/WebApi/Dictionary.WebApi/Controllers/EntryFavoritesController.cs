@@ -11,8 +11,8 @@ namespace Dictionary.WebApi.Controllers
     [ApiController]
     public sealed class EntryFavoritesController : BaseController
     {
-        [HttpPost("entry/{EntryId}")]
-        public async Task<IActionResult> CreateEntryFavorite([FromRoute] Guid entryId, Guid? userId)
+        [HttpPost]
+        public async Task<IActionResult> CreateEntryFavorite(Guid entryId, Guid? userId)
         {
             var request = new CreateEntryFavoriteCommandRequest(userId.Value, entryId);
             if (userId == Guid.Empty)
@@ -22,7 +22,8 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("entry/{EntryId}")]
+        [HttpDelete]
+        [Route("{entryId}")]
         public async Task<IActionResult> DeleteEntryFavorite([FromRoute] Guid entryId, Guid? userId)
         {
             var request = new DeleteEntryFavoriteCommandRequest { UserId = userId.Value,EntryId=entryId };
@@ -33,8 +34,9 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost("comment/{EntryCommentId}")]
-        public async Task<IActionResult> CreateEntryCommentFavorite([FromRoute] Guid entryCommentId, Guid userId)
+        [HttpPost]
+        [Route("comment")]
+        public async Task<IActionResult> CreateEntryCommentFavorite(Guid entryCommentId, Guid userId)
         {
             var request = new CreateEntryCommentFavoriteCommandRequest(entryCommentId,userId);
 
@@ -47,7 +49,8 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost("comment/{EntryCommentId}")]
+        [HttpDelete]
+        [Route("comment/{entryCommentId}")]
         public async Task<IActionResult> DeleteEntryCommentFavorite([FromRoute] Guid entryCommentId, Guid userId)
         {
             var request = new DeleteEntryCommentFavoriteCommandRequest { EntryCommentId = entryCommentId, UserId = userId };

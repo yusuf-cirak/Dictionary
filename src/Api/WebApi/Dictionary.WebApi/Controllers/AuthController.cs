@@ -31,12 +31,5 @@ namespace Dictionary.WebApi.Controllers
             bool response = await Mediator.Send(request);
             return Ok(response);
         }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommandRequest request)
-        {
-            Guid response = await Mediator.Send(request);
-            return Ok(response);
-        }
     }
 }

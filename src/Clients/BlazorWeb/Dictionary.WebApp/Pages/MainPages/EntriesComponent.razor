@@ -1,0 +1,33 @@
+﻿@{
+    foreach (var item in entries)
+    {
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-8">
+
+            <a href="/entry/@item.Id">@item.Subject</a>
+            <span><small class="text-muted">@item.CommentCount</small></span>
+        </li>
+    }
+}
+
+@code {
+
+
+    [Inject]
+    IEntryService EntryService { get; set; }
+
+    List<GetEntriesViewModel> entries = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshList();
+    }
+
+    public async Task RefreshList()
+    {
+        entries = await EntryService.GetEntries();
+
+        StateHasChanged();
+        //     Notifies the component that its state has changed. When applicable, this will
+        //     cause the component to be re-rendered.
+    }
+}

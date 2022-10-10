@@ -12,13 +12,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dictionary.Application.Features.Entries.Queries.GetEntries
 {
-    public sealed class GetEntriesQueryRequest : IRequest<GetEntriesQueryResponse>
+    public sealed class GetEntriesQueryRequest : IRequest<List<GetEntriesViewModel>>
     {
         public bool GetTodayEntries { get; set; } // Will we fetch today's entries from db?
         public int Count { get; set; } = 100; // How much entry to fetch from db?
     }
 
-    public sealed class GetEntriesQueryHandler : IRequestHandler<GetEntriesQueryRequest, GetEntriesQueryResponse>
+    public sealed class GetEntriesQueryHandler : IRequestHandler<GetEntriesQueryRequest, List<GetEntriesViewModel>>
     {
         private readonly IEntryRepository _entryRepository;
         private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace Dictionary.Application.Features.Entries.Queries.GetEntries
             _mapper = mapper;
         }
 
-        public async Task<GetEntriesQueryResponse> Handle(GetEntriesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<List<GetEntriesViewModel>> Handle(GetEntriesQueryRequest request, CancellationToken cancellationToken)
         {
             var query = _entryRepository.AsQueryable();
 
@@ -48,17 +48,14 @@ namespace Dictionary.Application.Features.Entries.Queries.GetEntries
 
 
 
-            var response = new GetEntriesQueryResponse
-            {
-                EntriesList = await query.ProjectTo<GetEntriesViewModel>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken)
-            };
+            //var response = new GetEntriesQueryResponse
+            //{
+            //    EntriesList = await query.ProjectTo<GetEntriesViewModel>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken)
+            //};
 
-            return response;
+
+            return await query.ProjectTo<GetEntriesViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+
         }
-    }
-
-    public sealed class GetEntriesQueryResponse
-    {
-        public List<GetEntriesViewModel> EntriesList { get; set; }
     }
 }

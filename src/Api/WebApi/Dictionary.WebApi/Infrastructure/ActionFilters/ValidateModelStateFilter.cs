@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Dictionary.WebApi.Infrastructure.Results;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Dictionary.WebApi.Infrastructure.ActionFilters
 {
@@ -12,6 +14,8 @@ namespace Dictionary.WebApi.Infrastructure.ActionFilters
                     .SelectMany(e => e.Errors)
                     .Select(e => !string.IsNullOrEmpty(e.ErrorMessage) ? e.ErrorMessage : e.Exception?.Message)
                     .Distinct().ToArray();
+
+                context.Result = new BadRequestObjectResult(new ValidationResponseModel(messages));
                 return;
             }
 

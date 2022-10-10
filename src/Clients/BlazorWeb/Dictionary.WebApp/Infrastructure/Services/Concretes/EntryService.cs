@@ -56,9 +56,9 @@ namespace Dictionary.WebApp.Infrastructure.Services.Concretes
             return new Guid(guidStr.Trim('"'));
         }
 
-        public async Task<SearchEntryViewModel> SearchEntryBySubject(string searchText)
+        public async Task<List<SearchEntryViewModel>> SearchEntryBySubject(string searchText)
         {
-            var response = await _httpClient.GetFromJsonAsync<SearchEntryViewModel>($"api/entries/search?searchText={searchText}");
+            var response = await _httpClient.GetFromJsonAsync<List<SearchEntryViewModel>>($"api/entries/search?searchText={searchText}");
 
             return response!;
         }

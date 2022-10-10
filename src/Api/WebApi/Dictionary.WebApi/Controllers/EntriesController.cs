@@ -7,6 +7,7 @@ using Dictionary.Common.Features.Entries.Queries.GetUserEntries;
 using Dictionary.Common.Features.Entries.Queries.Search;
 using Dictionary.Common.Features.EntryComments.Commands.Create;
 using Dictionary.Common.Features.EntryFavorites.Commands.Create;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ namespace Dictionary.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetEntries([FromQuery] GetEntriesQueryRequest request)
         {
-            GetEntriesQueryResponse response = await Mediator.Send(request);
+            var response = await Mediator.Send(request);
             return Ok(response);
         }
 
@@ -43,7 +44,7 @@ namespace Dictionary.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet("detail/{id}")]
+        [HttpGet("detail")]
         public async Task<IActionResult> GetEntryDetailById([FromRoute] Guid id, int page, int pageSize)
         {
             var request = new GetEntryDetailQueryRequest { EntryId = id, UserId = UserId,PagingQuery=new(page,pageSize)};
@@ -60,6 +61,7 @@ namespace Dictionary.WebApi.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateEntry([FromBody] CreateEntryCommandRequest request)
         {
             Guid entryId = await Mediator.Send(request);

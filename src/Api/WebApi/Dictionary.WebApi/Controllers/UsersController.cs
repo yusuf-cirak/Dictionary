@@ -1,4 +1,5 @@
 ﻿using Dictionary.Application.Features.Users.Queries;
+using Dictionary.Common.Features.Users.Commands.Update;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,13 @@ namespace Dictionary.WebApi.Controllers
         {
             var response = await Mediator.Send(request);
 
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommandRequest request)
+        {
+            Guid response = await Mediator.Send(request);
             return Ok(response);
         }
     }

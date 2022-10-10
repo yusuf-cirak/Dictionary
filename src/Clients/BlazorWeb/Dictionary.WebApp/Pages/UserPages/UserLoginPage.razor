@@ -1,0 +1,62 @@
+﻿@page "/giris"
+
+<div class="login-container">
+    <div class="row justify-content-center align-items-start h-100">
+        <div class="login-form">
+            <EditForm Model="@loginUserCommand" OnValidSubmit="LoginProcess">
+                @if (errorText != string.Empty)
+                {
+                    <span class="text-danger">@errorText</span>
+                    <br />
+                }
+
+                <div class="form-group">
+                    <input @bind-value="loginUserCommand.Email" type="email" class="form-control" placeholder="e-posta" />
+                    <br />
+                </div>
+                <div class="form-group">
+                    <input @bind-value="loginUserCommand.Password" type="password" class="form-control" placeholder="şifre" />
+                    <br />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-sozluk">giriş yap</button>
+                    <br />
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    IIdentityService IdentityService { get; set; }
+
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+
+    private LoginUserCommandRequest loginUserCommand = new();
+    private string errorText = "";
+
+    public async Task LoginProcess()
+    {
+
+        try
+        {
+            var res = await IdentityService.Login(loginUserCommand);
+            if (res)
+            {
+                NavigationManager.NavigateTo("/");
+            }
+            else errorText = "Something went wrong";
+        }
+        catch (Exception e)
+        {
+
+            errorText = e.Message;
+        }
+
+    }
+
+
+
+}

@@ -4,12 +4,11 @@ namespace Dictionary.WebApp.Infrastructure.Services.Abstractions
 {
     public interface IIdentityService
     {
-        bool IsLoggedIn { get; }
-
-        Guid GetUserId();
-        string GetUserName();
-        string GetUserToken();
+        Task<Guid> GetUserId();
+        Task<string> GetUserName();
+        Task<string> GetUserToken();
+        Task<bool> IsLoggedIn();
         Task<bool> Login(LoginUserCommandRequest request);
-        void Logout();
+        Task Logout();
     }
 }
