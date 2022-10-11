@@ -28,7 +28,7 @@ namespace Dictionary.Common.Infrastructure
 
         public static EventingBasicConsumer GetOrCreateBasicConsumer=>_channel??=CreateBasicConsumer();
 
-        private static EventingBasicConsumer CreateBasicConsumer()
+        public static EventingBasicConsumer CreateBasicConsumer()
         {
             var factory = new ConnectionFactory { HostName = DictionaryConstants.RabbitMqHost};
             var connection = factory.CreateConnection();

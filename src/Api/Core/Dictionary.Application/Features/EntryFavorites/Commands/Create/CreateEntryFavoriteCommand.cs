@@ -37,7 +37,7 @@ namespace Dictionary.Application.Features.EntryFavorites.Commands.Create
 
             QueueFactory.SendMessageToExchange(exchangeName: DictionaryConstants.FavoriteExchangeName,
                 exchangeType: DictionaryConstants.DefaultExchangeType,
-                queueName: DictionaryConstants.DeleteEntryFavoriteQueue,
+                queueName: DictionaryConstants.CreateEntryFavoriteQueue,
                 obj: @event);
 
             return await Task.FromResult(true);

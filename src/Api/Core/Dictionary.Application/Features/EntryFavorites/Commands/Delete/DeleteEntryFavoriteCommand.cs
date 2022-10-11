@@ -19,7 +19,7 @@ namespace Dictionary.Application.Features.EntryFavorites.Commands.Delete
 
             QueueFactory.SendMessageToExchange(exchangeName: DictionaryConstants.FavoriteExchangeName,
                 exchangeType: DictionaryConstants.DefaultExchangeType,
-                queueName: DictionaryConstants.CreateEntryFavoriteQueue,
+                queueName: DictionaryConstants.DeleteEntryFavoriteQueue,
                 obj: @event);
 
             return await Task.FromResult(true);

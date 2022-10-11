@@ -31,5 +31,19 @@ namespace Dictionary.FavoriteService.Services
            });
 
         }
+        
+        public async Task DeleteEntryFav(DeleteEntryFavoriteEvent @event){
+
+            using var connection = new SqlConnection(connectionString);
+
+            //connection.CreateCommand().ExecuteNonQueryAsync("");
+
+            await connection.ExecuteAsync("DELETE FROM EntryFavorites WHERE EntryId=@EntryId AND UserId=@UserId  ", new
+            {
+                EntryId=@event.EntryId,
+                UserId=@event.UserId
+            });
+
+        }
     }
 }

@@ -21,16 +21,31 @@ namespace Dictionary.FavoriteService
             var connStr = _configuration.GetConnectionString("DictionarySqlServer");
 
             var favService = new Services.FavoriteService(connStr);
+
             QueueFactory.GetOrCreateBasicConsumer
             .EnsureExchange(DictionaryConstants.FavoriteExchangeName)
             .EnsureQueue(DictionaryConstants.CreateEntryFavoriteQueue, DictionaryConstants.FavoriteExchangeName)
-            .Receive<CreateEntryFavoriteEvent>(async fav =>
+            .Receive<CreateEntryFavoriteEvent>( fav =>
             {
                 // db insert
-                await favService.CreateEntryFav(fav);
-                _logger.LogInformation($"Received EntryId {fav.EntryId}");
+                favService.CreateEntryFav(fav).GetAwaiter();
+                // _logger.LogInformation($"Received EntryId {fav.EntryId}");
+                Console.WriteLine($"Time: {DateTime.Now} | {nameof(CreateEntryFavoriteEvent)} has received with EntryId : {fav.EntryId}");
             })
             .StartConsuming(DictionaryConstants.CreateEntryFavoriteQueue);
+            
+            
+            QueueFactory.GetOrCreateBasicConsumer
+                .EnsureExchange(DictionaryConstants.FavoriteExchangeName)
+                .EnsureQueue(DictionaryConstants.DeleteEntryFavoriteQueue, DictionaryConstants.FavoriteExchangeName)
+                .Receive<DeleteEntryFavoriteEvent>( fav =>
+                {
+                    // db insert
+                    favService.DeleteEntryFav(fav).GetAwaiter().GetResult();
+                    // _logger.LogInformation($"Received EntryId {fav.EntryId}");
+                    Console.WriteLine($"Time: {DateTime.Now} | Received EntryId with delete action {fav.EntryId}");
+                })
+                .StartConsuming(DictionaryConstants.DeleteEntryFavoriteQueue);
         }
     }
 }
