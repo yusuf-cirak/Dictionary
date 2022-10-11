@@ -8,27 +8,23 @@ namespace Dictionary.FavoriteService
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly IConfiguration _configuration;
+        private readonly FavoriteService.Services.FavoriteService _favoriteService;
 
-        public Worker(ILogger<Worker> logger, IConfiguration configuration)
+        public Worker(ILogger<Worker> logger, Services.FavoriteService favoriteService)
         {
             _logger = logger;
-            _configuration = configuration;
+            _favoriteService = favoriteService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var connStr = _configuration.GetConnectionString("DictionarySqlServer");
-
-            var favService = new Services.FavoriteService(connStr);
-
             QueueFactory.GetOrCreateBasicConsumer
             .EnsureExchange(DictionaryConstants.FavoriteExchangeName)
             .EnsureQueue(DictionaryConstants.CreateEntryFavoriteQueue, DictionaryConstants.FavoriteExchangeName)
             .Receive<CreateEntryFavoriteEvent>( fav =>
             {
                 // db insert
-                favService.CreateEntryFav(fav).GetAwaiter();
+                _favoriteService.CreateEntryFav(fav).GetAwaiter();
                 // _logger.LogInformation($"Received EntryId {fav.EntryId}");
                 Console.WriteLine($"Time: {DateTime.Now} | {nameof(CreateEntryFavoriteEvent)} has received with EntryId : {fav.EntryId}");
             })
@@ -41,7 +37,7 @@ namespace Dictionary.FavoriteService
                 .Receive<DeleteEntryFavoriteEvent>( fav =>
                 {
                     // db insert
-                    favService.DeleteEntryFav(fav).GetAwaiter().GetResult();
+                    _favoriteService.DeleteEntryFav(fav).GetAwaiter().GetResult();
                     // _logger.LogInformation($"Received EntryId {fav.EntryId}");
                     Console.WriteLine($"Time: {DateTime.Now} | Received EntryId with delete action {fav.EntryId}");
                 })

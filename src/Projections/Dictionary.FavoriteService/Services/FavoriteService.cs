@@ -5,16 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace Dictionary.FavoriteService.Services
 {
     public sealed class FavoriteService
     {
         private readonly string connectionString;
+        private readonly IConfiguration _configuration;
 
-        public FavoriteService(string connectionString)
+        public FavoriteService(IConfiguration configuration)
         {
-            this.connectionString = connectionString;
+            _configuration = configuration;
+            connectionString = _configuration.GetConnectionString("DictionarySqlServer");
         }
 
         public async Task CreateEntryFav(CreateEntryFavoriteEvent @event){

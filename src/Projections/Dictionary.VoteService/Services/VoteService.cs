@@ -14,10 +14,12 @@ namespace Dictionary.VoteService.Services
     public sealed class VoteService
     {
         private string connectionString;
+        private readonly IConfiguration _configuration;
 
-        public VoteService(string connectionString)
+        public VoteService(IConfiguration configuration)
         {
-            this.connectionString = connectionString;
+            _configuration = configuration;
+            connectionString = _configuration.GetConnectionString("DictionarySqlServer");
         }
 
         public async Task DeleteFromEntryVoteAsync(DeleteEntryVoteEvent @event)
