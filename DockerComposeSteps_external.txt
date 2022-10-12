@@ -1,0 +1,13 @@
+1) Create external networks to add external containers in
+
+docker network create dictionary_backend --attachable
+docker network create dictionary_frontend --attachable
+
+2) Add external container into the new created networks
+
+docker network connect dictionary_backend c_sqlserver_external
+docker network connect dictionary_backend c_rabbitmq_external
+
+3) Replace RabbitMQ host name constants with container name (c_rabbitmq_external)
+
+4) Replace DB host name with container name (c_sqlserver_external)

@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  dictionary.webapi:
+    container_name: c_dictionary_webapi
+    image: ${DOCKER_REGISTRY-}dictionarywebapi
+    build:
+      context: .
+      dockerfile: src/Api/WebApi/Dictionary.WebApi/Dockerfile
+
+  dictionary.webapp:
+    container_name: c_dictionary_webapp
+    image: ${DOCKER_REGISTRY-}dictionarywebapp
+    build:
+      context: .
+      dockerfile: src/Clients/BlazorWeb/Dictionary.WebApp/Dockerfile
+
+
+  dictionary.favoriteservice:
+    container_name: c_favoriteservice
+    image: ${DOCKER_REGISTRY-}dictionaryfavoriteservice
+    build:
+      context: .
+      dockerfile: src/Projections/Dictionary.FavoriteService/Dockerfile
+
+
+  dictionary.userservice:
+    container_name: c_userservice
+    image: ${DOCKER_REGISTRY-}dictionaryuserservice
+    build:
+      context: .
+      dockerfile: src/Projections/Dictionary.UserService/Dockerfile
+
+
+  dictionary.voteservice:
+    container_name: c_voteservice
+    image: ${DOCKER_REGISTRY-}dictionaryvoteservice
+    build:
+      context: .
+      dockerfile: src/Projections/Dictionary.VoteService/Dockerfile
+

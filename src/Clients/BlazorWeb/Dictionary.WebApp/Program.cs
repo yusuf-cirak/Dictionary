@@ -14,7 +14,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddHttpClient("DictionaryWebApiClient", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7089");
+    //client.BaseAddress = new Uri("https://localhost:7089");
+    client.BaseAddress = new Uri("http://localhost:8080");
 }).AddHttpMessageHandler<AuthTokenHandler>();
 
 builder.Services.AddScoped(sp =>
